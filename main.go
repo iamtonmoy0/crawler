@@ -27,4 +27,9 @@ func GetLatestBlogTitles(url string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	titles := " "
+	doc.Find(".post-title").Each(func(i int, s *goquery.Selection) {
+		titles += "-" + s.Text() + "\n"
+	})
+	return titles, nil
 }
